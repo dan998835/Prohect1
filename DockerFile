@@ -10,4 +10,4 @@ WORKDIR /usr/app/src
 COPY print.py ./
 COPY zip_job.py /tmp/
 
-CMD {"python3", "./print.py"}
+ENTRYPOINT ["python","./zip_job.py"]
