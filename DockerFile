@@ -17,5 +17,7 @@ COPY zip_job.py /tmp/
 
 ENTRYPOINT ["python","./zip_job.py"]
 
-#h as the container is up
+#h as the container is up run hostnamectl to print print OS type and architecture 
+#also check if python file exists.
 RUN hostnamectl
+    docker exec -it $containerId test -f /tmp/zip_job.py
