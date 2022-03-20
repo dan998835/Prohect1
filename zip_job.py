@@ -16,13 +16,14 @@ def main():
       print('file doesnt exist - quit script')
       sys.exit(1)
   #d
+  version = os.environ['VERSION']
   for x in array:
-    zip_file = ZipFile(x + '_' + ENV VERSION + '.zip', 'w')
+    zip_file = ZipFile(x + '_' + version + '.zip', 'w')
     zip_file.write(x + '.txt')
     zip_file.close()
   #e 
   for x in array:
-    if (os.path.exists(x + '_' + ENV VERSION + ".zip") != true):
+    if (os.path.exists(x + '_' + version + ".zip") != true):
       print('file doesnt exist - quit script')
       sys.exit(1)
     
