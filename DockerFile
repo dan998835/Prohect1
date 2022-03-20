@@ -1,13 +1,21 @@
+#a
 FROM ubuntu:latest
+#b
 ENV VERSION=1.2.0
 
 RUN apt-get update
-RUN apt install python3 -y
-RUN apt-get install vim zip unzip
+    #c
+    apt install python3 -y
+    #d+e+f
+    apt-get install vim zip unzip
 
 WORKDIR /usr/app/src
 
 COPY print.py ./
+#g
 COPY zip_job.py /tmp/
 
 ENTRYPOINT ["python","./zip_job.py"]
+
+#h as the container is up
+RUN hostnamectl
