@@ -1,0 +1,17 @@
+pipeline {
+  agent Dockerfile
+    tools{}
+    stages{
+      stage('Build){
+        execute the zip job
+      }
+      stage('Publish){
+        upload zip files to artifactory
+      }
+      stage('Report'){
+        send email with job status to some email
+      }
+      stage('Cleanup'){
+        delete the workspace
+      }
+    }
