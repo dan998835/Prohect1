@@ -1,30 +1,31 @@
 import os
 from os.path import exists
 import sys
-from zipfile import Zipfile
+from zipfile import ZipFile
+from os.path import basename
 
 def main():
-  #a
-  array=['a','b','b','d']
-  #b
+  array=['a','b','c','d']
+  dir = format(os.getcwd())
+  print(dir)
   for x in array:
-    f=open(x + ".txt")
+    f = open(x + ".txt" , 'w')
     f.close()
-  #c
   for x in array:
-    if (os.path.exists(x + ".txt") != true):
+    if (not os.path.isfile(str(dir) + str('/') + str(x) + str('.txt'))):
+      print('dir =' + str(dir))
       print('file doesnt exist - quit script')
       sys.exit(1)
-  #d
-  version = os.environ['VERSION']
+  #version = os.environ[VERSION]#
+  version = '1.2.0'
   for x in array:
     zip_file = ZipFile(x + '_' + version + '.zip', 'w')
-    zip_file.write(x + '.txt')
+    filepath = os.path.join(dir , x + '.txt')
+    zip_file.write(filepath , basename(filepath))
     zip_file.close()
-  #e 
   for x in array:
-    if (os.path.exists(x + '_' + version + ".zip") != true):
+    if (not os.path.isfile( str(x) + str('_') + str(version) + str('.zip'))):
       print('file doesnt exist - quit script')
       sys.exit(1)
-    
-      
+
+main()      
