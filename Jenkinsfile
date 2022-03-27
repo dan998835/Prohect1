@@ -10,32 +10,49 @@ pipeline {
      stage('Server'){
         steps{
           rtServer {
-            id: "my-artifactory-server"
-            url: 'http://localhost:8082/artifactory'
-            username: 'super-user'
-            password: 'Qw12856!'
-            bypassProxy: true
-            timeout: 300
+            id: "my-artifactory-server" ,
+            url: 'http://localhost:8082/artifactory' ,
+            username: 'super-user' ,
+            password: 'Qw12856!' ,
+            bypassProxy: true ,
+            timeout: 300 ,
           }
      }
      stage('Build){
         steps{
-          execute the zip job
+          sh 'zip_job.py'
         }
      }
      stage('Publish){
-        stages{
-          upload zip files to artifactory
+        steps { 
+          rtUpload {
+             buildName:  JOB_NAME,
+             buildNumber:   BUILD_NUMBER,
+             serverId:  SERVER_ID,
+               spec:  '''{
+                  "files":{
+                      "pattern": "$WORKSPACE/*.zip"
+                      "target": "repository/"
+                      "recursive": "false"
+                  }
+               
+               }'''
+          }
+          
         }
      }
      stage('Report'){
-        stages{
-          send email with job status to some email
+        steps{
+            post{
+                always{
+                  emailext attachLog: true, body: 'This is the job status', subject:"Jenkins Build ${currentBuild.currentResult} , to: 'dan998835@gmail.com'
+                }
+            }
         }
      }
      stage('Cleanup'){
-        stages{
-          delete the workspace
+        steps{
+            sh 'rm -rf $WORKSPACE/*'
         } 
      }
   }
