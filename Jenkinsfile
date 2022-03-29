@@ -10,8 +10,10 @@
     }
     stages{
          stage('Build') {
-            sh 'sudo docker build -t image:1 .'
-            sh 'sudo docker run --entrypoint /bin/sh image:1'
+           steps {
+              sh 'sudo docker build -t image:1 .'
+              sh 'sudo docker run --entrypoint /bin/sh image:1'
+           }
          } 
          stage('Server'){
               steps{
