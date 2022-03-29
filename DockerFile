@@ -9,6 +9,7 @@ RUN apt-get install zip -y
 RUN apt-get install unzip -y
 WORKDIR /tmp/
 COPY zip_job.py . /tmp/
+CMD ["python3" , "./zip_job.py]
 CMD ["docker" , "chmod +x /tmp/zip_job.py" ]
 
 CMD ["docker" , "echo info | grep OStype"]
