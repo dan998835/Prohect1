@@ -56,7 +56,7 @@ pipeline {
         steps{
             post{
                 always{
-                  emailext attachLog: true, body: 'This is the job status', subject:"Jenkins Build ${currentBuild.currentResult} , to: 'dan998835@gmail.com'
+                  emailext body: 'This is the job status', subject:'Jenkins Build ${currentBuild.currentResult}' , to: 'dan998835@gmail.com'
                 }
             }
         }
