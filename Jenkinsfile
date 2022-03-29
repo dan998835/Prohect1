@@ -6,30 +6,31 @@
       }
     }
     tools{
-      maven "3.8.5"
+      maven "maven"
     }
     stages{
-       stage('Server'){
-            steps{
-                rtServer (
-                  id: 'my-artifactory-server' ,
-                  url: 'http://localhost:8082/artifactory' ,
-                  username: 'super-user' ,
-                  password: 'Qw12856!' ,
-                  bypassProxy: true ,
-                  timeout: 300 ,
-                )
-            }
-       }
+         stage('Server'){
+              steps{
+                  rtServer (
+                    id: 'my-artifactory-server' ,
+                    url: 'http://localhost:8082/artifactory' ,
+                    username: 'super-user' ,
+                    password: 'Qw12856!' ,
+                    bypassProxy: true ,
+                    timeout: 300 ,
+                  )
+              }
+         }
        stage('Build'){
             steps{
-              script{
-                try {
-                  sh 'zip_job.py'
-                }
-                catch (Exception e) {
-                  currentBuild.result = 'FAILURE'
-                  stageResultMap.didBuildSucceeded = false
+                script{
+                    try {
+                      sh 'zip_job.py'
+                    }
+                    catch (Exception e) {
+                      currentBuild.result = 'FAILURE'
+                      stageResultMap.didBuildSucceeded = false
+                    }
                 }
             }
        }
