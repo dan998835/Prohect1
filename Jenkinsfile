@@ -24,7 +24,10 @@
             steps{
                 script{
                     try {
-                      sh 'zip_job.py'
+                      sh '''
+                      cd /tmp
+                      'zip_job.py'
+                      '''
                     }
                     catch (Exception e) {
                       currentBuild.result = 'FAILURE'
