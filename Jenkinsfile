@@ -3,6 +3,7 @@
       dockerfile {
         filename 'DockerFile'   
         label 'zip-job-docker'
+      }
     }
     tools{
       maven "3.8.5"
