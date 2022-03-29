@@ -42,7 +42,7 @@
              }
              steps {
                   rtUpload {
-                       serverId: 'my-artifactory-server'
+                       serverId: 'my-artifactory-server', 
                        spec:  '''{
                               "files": [
                                         {
