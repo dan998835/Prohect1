@@ -9,6 +9,10 @@
       maven "maven"
     }
     stages{
+         stage('build') {
+            sh 'sudo docker build -t image:1 .'
+            sh 'sudo docker run --entrypoint /bin/sh image:1'
+         } 
          stage('Server'){
               steps{
                   rtServer (
