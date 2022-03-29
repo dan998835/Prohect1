@@ -9,14 +9,15 @@ pipeline {
   stages{
      stage('Server'){
         steps{
-          rtServer {
-            id: "my-artifactory-server" ,
-            url: 'http://localhost:8082/artifactory' ,
-            username: 'super-user' ,
-            password: 'Qw12856!' ,
-            bypassProxy: true ,
-            timeout: 300 ,
-          }
+            rtServer {[
+              id: "my-artifactory-server" ,
+              url: 'http://localhost:8082/artifactory' ,
+              username: 'super-user' ,
+              password: 'Qw12856!' ,
+              bypassProxy: true ,
+              timeout: 300 ,
+            ]}
+        }
      }
      stage('Build){
         steps{
