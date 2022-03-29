@@ -20,26 +20,36 @@ pipeline {
      }
      stage('Build){
         steps{
-          sh 'zip_job.py'
+          script{
+            try {
+              sh 'zip_job.py'
+            }
+            catch (Exception e) {
+              currentBuild.result = 'FAILURE'
+              stageResultMap.didBuildSucceeded = false
+            }
         }
      }
      stage('Publish){
-        steps { 
-          rtUpload {
-             buildName:  JOB_NAME,
-             buildNumber:   BUILD_NUMBER,
-             serverId:  SERVER_ID,
-               spec:  '''{
-                  "files":{
-                      "pattern": "$WORKSPACE/*.zip"
-                      "target": "repository/"
-                      "recursive": "false"
-                  }
-               
-               }'''
-          }
-          
-        }
+           when {
+               expression {
+                 return stageResultMap.find( it.key == "didBuildSucceeded" }?.value
+               }
+           }
+           steps {
+                rtUpload {
+                     buildName:  JOB_NAME,
+                     buildNumber:   BUILD_NUMBER,
+                     serverId:  SERVER_ID,
+                     spec:  '''{
+                            "files":{
+                                "pattern": "$WORKSPACE/*.zip"
+                                "target": "repository/"
+                                "recursive": "false"
+                            }
+                     }'''
+                }
+            }
      }
      stage('Report'){
         steps{
