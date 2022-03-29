@@ -1,7 +1,8 @@
   pipeline {
     agent {
       dockerfile {
-        filename 'DockerFile'   
+        filename 'DockerFile'
+        args '--privilefed'
       }
     }
     tools{
