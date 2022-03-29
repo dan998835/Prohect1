@@ -24,7 +24,7 @@
             steps{
                 script{
                     try {
-                      python3 '''
+                      sh '''
                       cd /tmp
                       'zip_job.py'
                       '''
