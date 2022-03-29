@@ -3,7 +3,6 @@
       dockerfile {
         filename 'DockerFile'
         args '--privileged'
-        label 'zip-job-docker'
       }
     }
     tools{
