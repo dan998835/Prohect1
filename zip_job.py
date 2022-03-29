@@ -27,5 +27,4 @@ def main():
     if (not os.path.isfile( str(x) + str('_') + str(version) + str('.zip'))):
       print('file doesnt exist - quit script')
       sys.exit(1)
-
-main()      
+main()
