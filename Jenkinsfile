@@ -1,6 +1,7 @@
   pipeline {
     agent {
-        dockerfile true
+      dockerfile {
+        filename 'DockerFile'   
         label 'zip-job-docker'
     }
     tools{
@@ -8,28 +9,28 @@
     }
     stages{
        stage('Server'){
-          steps{
-              rtServer {[
-                id: 'my-artifactory-server' ,
-                url: 'http://localhost:8082/artifactory' ,
-                username: 'super-user' ,
-                password: 'Qw12856!' ,
-                bypassProxy: true ,
-                timeout: 300 ,
-              ]}
-          }
+            steps{
+                rtServer (
+                  id: 'my-artifactory-server' ,
+                  url: 'http://localhost:8082/artifactory' ,
+                  username: 'super-user' ,
+                  password: 'Qw12856!' ,
+                  bypassProxy: true ,
+                  timeout: 300 ,
+                )
+            }
        }
        stage('Build'){
-          steps{
-            script{
-              try {
-                sh 'zip_job.py'
-              }
-              catch (Exception e) {
-                currentBuild.result = 'FAILURE'
-                stageResultMap.didBuildSucceeded = false
-              }
-          }
+            steps{
+              script{
+                try {
+                  sh 'zip_job.py'
+                }
+                catch (Exception e) {
+                  currentBuild.result = 'FAILURE'
+                  stageResultMap.didBuildSucceeded = false
+                }
+            }
        }
        stage('Publish'){
              when {
@@ -53,18 +54,18 @@
               }
        }
        stage('Report'){
-          steps{
-              post{
-                  always{
-                    emailext body: 'This is the job status', subject:'Jenkins Build ${currentBuild.currentResult}' , to: 'dan998835@gmail.com'
-                  }
-              }
-          }
+            steps{
+                post{
+                    always{
+                      emailext body: 'This is the job status', subject:'Jenkins Build ${currentBuild.currentResult}' , to: 'dan998835@gmail.com'
+                    }
+                }
+            }
        }
        stage('Cleanup'){
-          steps{
-              sh 'rm -rf $WORKSPACE/*'
-          } 
+            steps{
+                sh 'rm -rf $WORKSPACE/*'
+            } 
        }
     }
   }
