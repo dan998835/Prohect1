@@ -12,7 +12,7 @@
          stage('Server'){
               steps{
                   rtServer (
-                    id: 'my-artifactory-server' ,
+                    id: "my-artifactory-server" ,
                     url: 'http://localhost:8082/artifactory' ,
                     username: 'super-user' ,
                     password: 'Qw12856!' ,
@@ -41,7 +41,7 @@
                  }
              }
              steps {
-                  rtUpload {
+                  rtUpload (
                        serverId: 'my-artifactory-server', 
                        spec:  '''{
                               "files": [
@@ -52,7 +52,7 @@
                                         }
                               ]
                        }'''
-                  }
+                  )
               }
        }
        stage('Report'){
