@@ -2,7 +2,7 @@
     agent {
       dockerfile {
         filename 'DockerFile'
-        args '--privilefed'
+        args '--privileged'
       }
     }
     tools{
