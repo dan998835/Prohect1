@@ -29,8 +29,8 @@
                        spec:  '''{
                               "files": [
                                         {
-                                          "pattern": "$WORKSPACE/*.zip"
-                                          "target": "repository/"
+                                          "pattern": "$WORKSPACE/*.zip" ,
+                                          "target": "repository/" ,
                                           "recursive": "false"
                                         }
                               ]
