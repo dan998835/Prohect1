@@ -26,7 +26,7 @@
                 script{
                     try {
                       sh '''
-                      'zip_job.py'
+                      /tmp
                       '''
                     }
                     catch (Exception e) {
