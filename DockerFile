@@ -10,11 +10,9 @@ RUN apt-get install unzip -y
 
 
 COPY zip_job.py . /tmp/
+RUN chmod +x /tmp/zip_job.py
 WORKDIR /tmp
 CMD ["python3" , "./zip_job.py]
 
-RUN chmod +x /tmp/zip_job.py
-RUN echo info | grep OStype
-RUN echo info | grep Architecture
 RUN echo uname -a
 RUN docker exec -it $containerId test -f /tmp/zip_job.py
