@@ -40,16 +40,9 @@
        }
        stage('Report'){
             steps {
-                post { 
-                    always {
-                        emailtext ( 
-                            body: "This is the job status" , 
-                            subject:'Jenkins Build ${currentBuild.currentResult}' ,
-                            to: "dan998835@gmail.com" ,
-                            from: "Jenkins Update"
-                        )
-                    }
-                }
+              node('master') {
+                  echo 'Send Mail'
+              }
             }
         }
        stage('Cleanup'){
@@ -58,4 +51,14 @@
             } 
        }
     }
+    post { 
+           always {
+                emailtext ( 
+                     body: "This is the job status" , 
+                     subject:'Jenkins Build ${currentBuild.currentResult}' ,
+                     to: "dan998835@gmail.com" ,
+                     from: "Jenkins Update"
+                )
+           }
+     }
 }
