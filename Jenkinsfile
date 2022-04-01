@@ -40,9 +40,7 @@
        }
        stage('Report'){
             steps {
-              node('master') {
-                  echo 'Send Mail'
-              }
+                echo 'Send Mail'
             }
         }
        stage('Cleanup'){
