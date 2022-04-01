@@ -42,7 +42,9 @@
             steps{
                 post{
                     always{
-                      emailext body: 'This is the job status', subject:'Jenkins Build ${currentBuild.currentResult}' , to: 'dan998835@gmail.com'
+                      mail to: 'dan998835@gmail.com' , 
+                      body: 'This is the job status' , 
+                      subject:'Jenkins Build ${currentBuild.currentResult}'   
                     }
                 }
             }
