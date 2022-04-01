@@ -26,6 +26,7 @@
                 script{
                     try {
                       sh '''
+                      sudo su jenkins
                       sudo chmod 777 /tmp
                       zip_job.py
                       '''
