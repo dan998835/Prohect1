@@ -38,21 +38,21 @@
                   )
               }
        }
-       stage('Report'){
-            steps{
-                post{
-                    always{
-                      mail to: 'dan998835@gmail.com' , 
-                      body: 'This is the job status' , 
-                      subject:'Jenkins Build ${currentBuild.currentResult}'   
-                    }
-                }
-            }
-       }
        stage('Cleanup'){
             steps{
                 sh 'rm -rf $WORKSPACE/*'
             } 
        }
     }
+    stage('Report'){
+            steps {
+                post { 
+                    always {
+                     emailtext body: 'This is the job status' , 
+                     subject:'Jenkins Build ${currentBuild.currentResult}' ,
+                     mail to: 'dan998835@gmail.com' ,
+                    }
+                }
+            }
+     }
 }
