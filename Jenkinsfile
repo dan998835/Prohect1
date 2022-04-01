@@ -26,7 +26,6 @@
                 script{
                     try {
                       sh '''
-                      cd /tmp
                       'zip_job.py'
                       '''
                     }
