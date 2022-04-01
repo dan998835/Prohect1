@@ -3,6 +3,7 @@
       dockerfile {
         filename 'DockerFile'
         args '--privileged'
+        args '-u root:sudo -v /var/lib/jenkins/workspace/artifactory-declerative-pipeline@tmp:/tmp'
       }
     }
     tools{
@@ -26,7 +27,7 @@
                 script{
                     try {
                       sh '''
-                      sudo su jenkins
+                      
                       sudo chmod 777 /tmp
                       zip_job.py
                       '''
