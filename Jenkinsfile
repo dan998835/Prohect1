@@ -48,9 +48,12 @@
             steps {
                 post { 
                     always {
-                     emailtext body: 'This is the job status' , 
-                     subject:'Jenkins Build ${currentBuild.currentResult}' ,
-                     mail to: 'dan998835@gmail.com' ,
+                        emailtext { 
+                            body: 'This is the job status' , 
+                            subject:'Jenkins Build ${currentBuild.currentResult}' ,
+                            to: 'dan998835@gmail.com' ,
+                            from: 'Jenkins Update'
+                        }
                     }
                 }
             }
