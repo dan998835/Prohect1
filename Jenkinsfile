@@ -28,7 +28,7 @@
                        spec: '''{
                               "files": [
                                         {
-                                          "pattern": tmp/*.zip",
+                                          "pattern": $WORKSPACE/*.zip",
                                           "target": "repository/"
                                         }
                               ]
