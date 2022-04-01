@@ -8,13 +8,12 @@ RUN apt-get install vim -y
 RUN apt-get install zip -y
 RUN apt-get install unzip -y
 
-
 COPY zip_job.py . /tmp/
 RUN chmod +x /tmp/zip_job.py
 WORKDIR /tmp
 CMD ["python3" , "./zip_job.py]
 
-RUN systemctl | grep Architecture
-RUN systemctl | grep Kernel
+RUN hostnamectl | grep Architecture
+RUN hostnamectl | grep Kernel
 RUN echo uname -a
 RUN test -f /tmp/zip_job.py && echo "file exists"
