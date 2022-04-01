@@ -37,7 +37,7 @@
                     }
                 }
            }
-       ```stage('Publish'){
+          stage('Publish'){
              when {
                  expression {
                    return stageResultMap.find( it.key == "didBuildSucceeded" )?.value
