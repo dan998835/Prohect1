@@ -8,12 +8,12 @@ RUN apt-get install vim -y
 RUN apt-get install zip -y
 RUN apt-get install unzip -y
 
-COPY . /tmp/
+COPY zip_job.py . /tmp/
 WORKDIR /tmp
 CMD ["python3" , "./zip_job.py]
-CMD ["docker" , "chmod +x /tmp/zip_job.py" ]
 
-CMD ["docker" , "echo info | grep OStype"]
-CMD ["docker" , "echo info | grep Architecture"]
-CMD ["echo" , "uname -a"]
-# CMD ["docker" , "exec -it $containerId test -f /tmp/zip_job.py"]
+RUN chmod +x /tmp/zip_job.py
+RUN echo info | grep OStype
+RUN echo info | grep Architecture
+RUN echo uname -a
+RUN docker exec -it $containerId test -f /tmp/zip_job.py
