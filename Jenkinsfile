@@ -51,9 +51,9 @@
     }
     post { 
            always { 
-                     body: 'This is the job status' , 
-                     subject:'Jenkins Build ${currentBuild.currentResult}' ,
-                     mail to: dan998835@gmail.com ,
+                     mail to: 'dan998835@gmail.com',
+                     body: "This is the job status", 
+                     subject:"Jenkins Build ${currentBuild.currentResult}" ,
                      from: 'Jenkins Update'
            }
      }
