@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 ENV VERSION=1.2.0
 
-RUN chmod 755 /var/run/docker.sock
+RUN chmod 666 /var/run/docker.sock
 RUN apt-get update
 RUN apt-get install python3 -y
 RUN apt-get install vim -y 
