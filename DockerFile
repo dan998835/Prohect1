@@ -5,7 +5,7 @@ RUN apt-get update && \ apt-get install python3 -y && \ apt-get install vim -y &
 COPY zip_job.py . /tmp/
 RUN chmod +x /tmp/zip_job.py
 WORKDIR /tmp
-CMD ["python3" , "./zip_job.py]
+# CMD ["python3" , "./zip_job.py]
 
 RUN uname -a
 RUN test -f /tmp/zip_job.py && echo "file exists"
