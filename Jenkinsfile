@@ -50,13 +50,11 @@
        }
     }
     post { 
-           always {
-                emailtext ( 
+           always { 
                      body: "This is the job status" , 
                      subject:'Jenkins Build ${currentBuild.currentResult}' ,
                      to: "dan998835@gmail.com" ,
-                     from: "Jenkins Update"
-                )
+                     from: "Jenkins Update
            }
      }
 }
