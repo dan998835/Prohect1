@@ -26,7 +26,7 @@
                 script{
                     try {
                       sh '''
-                      chmod 777 /tmp
+                      sudo chmod 777 /tmp
                       zip_job.py
                       '''
                     }
