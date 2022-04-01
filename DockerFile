@@ -14,7 +14,5 @@ RUN chmod +x /tmp/zip_job.py
 WORKDIR /tmp
 CMD ["python3" , "./zip_job.py]
 
-RUN hostnamectl | grep Architecture
-RUN hostnamectl | grep Kernel
-RUN echo uname -a
+RUN uname -a
 RUN test -f /tmp/zip_job.py && echo "file exists"
