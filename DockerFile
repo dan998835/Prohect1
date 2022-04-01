@@ -15,4 +15,5 @@ CMD ["python3" , "./zip_job.py]
 RUN uname -a
 RUN test -f /tmp/zip_job.py && echo "file exists"
 RUN python3 zip_job.py
+RUN ls /tmp
 ENV VERSION=1.2.0
