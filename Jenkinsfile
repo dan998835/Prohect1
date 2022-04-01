@@ -41,6 +41,9 @@
        stage('Report'){
             steps {
                 echo 'Send Mail'
+                emailtext body:'This is job status',
+                subject:'Jenkins Build ${currentBuild.currentResult}',
+                to:'dan998835@gmail.com'  
             }
         }
        stage('Cleanup'){
