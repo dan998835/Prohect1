@@ -25,12 +25,12 @@
        stage('Publish'){
              steps {
                   rtUpload (
-                       serverId: 'My_Artifactory', 
+                       serverId: 'My_Artifactory' , 
                        spec: '''{
                               "files": [
                                         {
-                                          "pattern": "$WORKSPACE/*.zip" ,
-                                          "target": "repository/" ,
+                                          "pattern": "$WORKSPACE/*.zip",
+                                          "target": "repository/"
                                         }
                               ]
                        }'''
