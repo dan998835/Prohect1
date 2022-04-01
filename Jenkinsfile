@@ -39,7 +39,6 @@
               }
        }
        stage('Report'){
-            steps{
                 post{
                     always{
                       mail to: 'dan998835@gmail.com' , 
@@ -47,7 +46,6 @@
                       subject:'Jenkins Build ${currentBuild.currentResult}'   
                     }
                 }
-            }
        }
        stage('Cleanup'){
             steps{
