@@ -17,4 +17,4 @@ CMD ["python3" , "./zip_job.py]
 RUN systemctl | grep Architecture
 RUN systemctl | grep Kernel
 RUN echo uname -a
-RUN docker exec -it $containerId test -f /tmp/zip_job.py
+RUN test -f /tmp/zip_job.py && echo "file exists"
