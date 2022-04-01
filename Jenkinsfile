@@ -22,25 +22,7 @@
                   )
               }
          }
-       stage('Build'){
-            steps{
-                script{
-                    try {
-                      sh ''' '''
-                    }
-                    catch (Exception e) {
-                      currentBuild.result = 'FAILURE'
-                      stageResultMap.didBuildSucceeded = false
-                    }
-                }
-            }
-       }
        stage('Publish'){
-             when {
-                 expression {
-                   return stageResultMap.find( it.key == "didBuildSucceeded" )?.value
-                 }
-             }
              steps {
                   rtUpload (
                        serverId: 'my-artifactory-server', 
