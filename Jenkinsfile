@@ -3,8 +3,7 @@
       dockerfile {
         filename 'DockerFile'
         args '--privileged'
-        args '-u root:sudo -v /var/lib/jenkins/workspace/artifactory-declerative-pipeline@tmp:/tmp'
-        LABEL 'zip-job-docker'
+        args '-u root:sudo -v /var/lib/jenkins/workspace/artifactory-declerative-pipeline@tmp:/tmp
       }
     }
     tools{
