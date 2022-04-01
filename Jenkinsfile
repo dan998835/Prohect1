@@ -13,7 +13,7 @@
          stage('Server'){
               steps{
                   rtServer (
-                    id: "my-artifactory-server" ,
+                    id: 'My_Artifactory' ,
                     url: 'http://localhost:8082/artifactory' ,
                     username: 'super-user' ,
                     password: 'Qw12856!' ,
@@ -25,13 +25,12 @@
        stage('Publish'){
              steps {
                   rtUpload (
-                       serverId: 'my-artifactory-server', 
-                       spec:  '''{
+                       serverId: 'My_Artifactory', 
+                       spec: '''{
                               "files": [
                                         {
                                           "pattern": "$WORKSPACE/*.zip" ,
                                           "target": "repository/" ,
-                                          "recursive": "false"
                                         }
                               ]
                        }'''
