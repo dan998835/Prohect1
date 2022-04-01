@@ -38,13 +38,7 @@
                   )
               }
        }
-       stage('Cleanup'){
-            steps{
-                sh 'rm -rf $WORKSPACE/*'
-            } 
-       }
-    }
-    stage('Report'){
+       stage('Report'){
             steps {
                 post { 
                     always {
@@ -57,5 +51,11 @@
                     }
                 }
             }
-     }
+        }
+       stage('Cleanup'){
+            steps{
+                sh 'rm -rf $WORKSPACE/*'
+            } 
+       }
+    }
 }
