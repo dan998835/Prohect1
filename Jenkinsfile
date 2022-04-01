@@ -4,6 +4,7 @@
         filename 'DockerFile'
         args '--privileged'
         args '-u root:sudo -v /var/lib/jenkins/workspace/artifactory-declerative-pipeline@tmp:/tmp'
+        LABEL 'zip-job-docker'
       }
     }
     tools{
@@ -22,34 +23,14 @@
                   )
               }
          }
-         stage('Build'){
-              steps{
-                  script{
-                      try {
-                          sh '''
-                          /tmp/zip_job.py
-                          '''
-                        }
-                        catch (Exception e) {
-                          currentBuild.result = 'FAILURE'
-                          stageResultMap.didBuildSucceeded = false
-                        }
-                    }
-                }
-           }
           stage('Publish'){
-             when {
-                 expression {
-                   return stageResultMap.find( it.key == "didBuildSucceeded" )?.value
-                 }
-             }
              steps {
                   rtUpload (
                        serverId: 'My_Artifactory' , 
                        spec: '''{
                               "files": [
                                         {
-                                          "pattern": "$WORKSPACE/*.zip",
+                                          "pattern": tmp/*.zip",
                                           "target": "repository/"
                                         }
                               ]
