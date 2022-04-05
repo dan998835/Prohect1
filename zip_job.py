@@ -7,7 +7,6 @@ from os.path import basename
 def main():
   array=['a','b','c','d']
   dir = format(os.getcwd())
-  print(dir)
   for x in array:
     f = open(x + ".txt" , 'w')
     f.close()
