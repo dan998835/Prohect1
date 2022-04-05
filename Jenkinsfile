@@ -3,7 +3,6 @@
       dockerfile {
         filename 'DockerFile'
         args '--privileged'
-        args '--env VERSION=1.2.0'
       }
     }
     tools{
@@ -45,7 +44,7 @@
                               "files": [
                                         {
                                           "pattern": "./*.zip",
-                                          "target": "repository/\${VERSION}/"                                       
+                                          "target": "repository/\$VERSION/"                                       
                                         }
                               ]
                        }'''
