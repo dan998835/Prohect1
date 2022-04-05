@@ -6,7 +6,7 @@
       }
     }
     environment{
-      VERSION = "1.2.0"
+      VERSION = '1.2.0'
     }
     tools{
       maven "maven"
@@ -47,7 +47,7 @@
                               "files": [
                                         {
                                           "pattern": "./*.zip",
-                                          "target": "repository/" + ${env.VERSION} + "/"                                        }
+                                          "target": "repository/${env.VERSION}/"                                        }
                               ]
                        }'''
                   )
