@@ -43,7 +43,7 @@
                        spec: '''{
                               "files": [
                                         {
-                                          "pattern": $WORKSPACE/*.zip",
+                                          "pattern": ./*.zip",
                                           "target": "repository/"
                                         }
                               ]
