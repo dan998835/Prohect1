@@ -6,7 +6,7 @@
       }
     }
     environment{
-        VERSION = "${env.VERSION}"
+        VERSION = "${VERSION}"
     }
     tools{
       maven "maven"
