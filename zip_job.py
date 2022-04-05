@@ -15,8 +15,8 @@ def main():
       print('dir =' + str(dir))
       print('file doesnt exist - quit script')
       sys.exit(1)
-  #version = os.environ[VERSION]#
-  version = '1.2.0'
+  version = os.environ['VERSION']
+  #version = '1.2.0'#
   for x in array:
     zip_file = ZipFile(x + '_' + version + '.zip', 'w')
     filepath = os.path.join(dir , x + '.txt')
