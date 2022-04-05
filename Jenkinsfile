@@ -5,9 +5,6 @@
         args '--privileged'
       }
     }
-    environment{
-        VERSION = "${VERSION}"
-    }
     tools{
       maven "maven"
     }
