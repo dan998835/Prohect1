@@ -5,6 +5,9 @@
         args '--privileged'
       }
     }
+    environment{
+      version = os.environ['VERSION']
+    }
     tools{
       maven "maven"
     }
