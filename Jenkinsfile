@@ -4,9 +4,9 @@
         filename 'DockerFile'
         args '--privileged'
       }
-      enironment{
+    }
+    enironment{
         VERSION = "${env.VERSION}"
-      }
     }
     tools{
       maven "maven"
