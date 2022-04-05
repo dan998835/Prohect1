@@ -5,7 +5,7 @@
         args '--privileged'
       }
     }
-    enironment{
+    environment{
         VERSION = "${env.VERSION}"
     }
     tools{
