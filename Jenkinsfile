@@ -4,6 +4,9 @@
         filename 'DockerFile'
         args '--privileged'
       }
+      enironment{
+        VERSION = "${env.VERSION}"
+      }
     }
     tools{
       maven "maven"
@@ -44,7 +47,7 @@
                               "files": [
                                         {
                                           "pattern": "./*.zip",
-                                          "target": "repository/${VERSION env variable}/"
+                                          "target": "repository/${VERSION}/"
                                         }
                               ]
                        }'''
