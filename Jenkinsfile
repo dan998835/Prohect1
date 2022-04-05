@@ -43,7 +43,7 @@
                        spec: '''{
                               "files": [
                                         {
-                                          "pattern": ./*.zip",
+                                          "pattern": "./*.zip",
                                           "target": "repository/"
                                         }
                               ]
