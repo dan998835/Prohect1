@@ -47,7 +47,8 @@
                               "files": [
                                         {
                                           "pattern": "./*.zip",
-                                          "target": "repository/1.2.0/"                                        }
+                                          "target": "repository/$VERSION/"                                       
+                                        }
                               ]
                        }'''
                   )
