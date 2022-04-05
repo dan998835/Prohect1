@@ -3,7 +3,7 @@
       dockerfile {
         filename 'DockerFile'
         args '--privileged'
-        args '--env VERSION=${VERSION}'
+        args '--env VERSION=1.2.0'
       }
     }
     tools{
