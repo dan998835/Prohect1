@@ -21,6 +21,21 @@
                   )
               }
          }
+         stage('Build'){
+            steps{
+                script{
+                    try {
+                      sh '''
+                      ./zip_job.py
+                      '''
+                    }
+                    catch (Exception e) {
+                      currentBuild.result = 'FAILURE'
+                      stageResultMap.didBuildSucceeded = false
+                    }
+                }
+            }
+          }
           stage('Publish'){
              steps {
                   rtUpload (
@@ -48,12 +63,4 @@
             } 
        }
     }
-    post { 
-           always { 
-                     mail to: 'dan998835@gmail.com',
-                     body: "This is the job status", 
-                     subject:"Jenkins Build ${currentBuild.currentResult}" ,
-                     from: 'Jenkins Update'
-           }
-     }
 }
