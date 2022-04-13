@@ -1,7 +1,7 @@
   node {
       def dockerfile = 'DockerFile'
       def buildImage = docker.build("image", "-f ${dockerfile} .")
-      buildImages.inside {
+      buildImage.inside {
           environment{
             VERSION = '1.2.0'
           }
