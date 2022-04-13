@@ -39,7 +39,7 @@
                }
             ]
         }'''
-        server.upload spec : uploadSpec
+        server.upload(uploadSpec)
     }
     stage('Report'){
              echo 'Send Mail'
