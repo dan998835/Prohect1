@@ -1,5 +1,5 @@
   node {
-  checkout csm
+  sh checkout scm
   sh git pull origin main
   def dockerfile = "DockerFile"
   def github  = "https://github.com/dan998835/Project1.git"
