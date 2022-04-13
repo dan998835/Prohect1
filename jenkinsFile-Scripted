@@ -1,6 +1,6 @@
   node {
       def dockerfile = 'DockerFile'
-      def buildImage = docker.build("image", "-f ${dockerfile} --privileged .")
+      def buildImage = docker.build("image", "-f ${dockerfile} .")
       environment{
         VERSION = '1.2.0'
       }
