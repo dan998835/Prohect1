@@ -5,21 +5,20 @@
         args '--privileged'
         label 'zip-job-docker'
       }
+      
     }
     environment{
       VERSION = '1.2.0'
     }
-    tools{
-      maven "maven"
-    }
-    stage('Server'){
-       def server = Artifactory.server 'My_Artifactory'
+    def server = Artifactory.server 'My_Artifactory'
+    def rtMaven = Artifactory.newMavenBuild()
+    stage('Server Configuration'){
        server.url: 'artifactory-url' 
        server.username: 'super-user' 
        server.password: 'Qw12856!' 
        server.bypassProxy: true 
-       server.onnection.timeout: 300
-       
+       server.connection.timeout: 300
+       rtMaven.tool = 'maven'
     }
     stage('Build'){
         steps{
