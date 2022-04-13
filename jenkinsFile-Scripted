@@ -1,9 +1,6 @@
   node {
   def dockerfile = "DockerFile"
-      def buildImage = docker.build(
-            "my-image:${env.BUILD_ID}" ,
-            "-f $dockerfile ." ,
-            "--build-arg privileged"
+      def buildImage = docker.build("my-image-${env.BUILD_ID}" ,"-f $dockerfile ."
       )
       buildImage.inside {
           environment{
