@@ -24,22 +24,23 @@
        {
             sh 'python3 ./zip_job.py'
        }
-       catch (Exception e) 
+       catch (all) 
        {
             currentBuild.result = 'FAILURE'
-            stageResultMap.didBuildSucceeded = false
        }
     }
-    stage('Publish'){
-       def uploadSpec = """{
-            "files": [
-               {
-                     "pattern": "./*.zip" ,
-                     "target": "repository/${VERSION}/"                                       
-               }
-            ]
-        }"""
-        server.upload(uploadSpec)
+    if(currentBuild.result != 'FAILURE'){
+        stage('Publish'){
+           def uploadSpec = """{
+                "files": [
+                   {
+                         "pattern": "./*.zip" ,
+                         "target": "repository/${VERSION}/"                                       
+                   }
+                ]
+            }"""
+            server.upload(uploadSpec)
+        }
     }
     stage('Report'){
              echo 'Send Mail'
