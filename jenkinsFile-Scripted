@@ -1,9 +1,7 @@
-  node ('zip-job-docker') {
-    agent {
-      dockerfile {
-        filename 'DockerFile'
-        args '--privileged'
-      } 
+  node () {
+    dockerfile {
+       filename 'DockerFile'
+       args '--privileged'
     }
     environment{
       VERSION = '1.2.0'
