@@ -45,5 +45,4 @@
         stage('Cleanup'){
                  sh 'rm -rf $WORKSPACE/*' 
         }
-   }
 }
