@@ -9,7 +9,7 @@
           def rtMaven = Artifactory.newMavenBuild()
           def buildInfo = Artifactory.newBuildInfo()
             stage('Server Configuration'){
-               rtServer.url = 'artifactory-url' 
+               rtServer.url = ''http://localhost:8082/artifactory'' 
                rtServer.username = 'super-user' 
                rtServer.password = 'Qw12856!' 
                rtServer.bypassProxy = true 
