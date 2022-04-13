@@ -1,9 +1,8 @@
-  node {
+  node ('zip-job-docker') {
     agent {
       dockerfile {
         filename 'DockerFile'
         args '--privileged'
-        label 'zip-job-docker'
       } 
     }
     environment{
@@ -21,45 +20,32 @@
        rtMaven.tool = 'maven'
     }
     stage('Build'){
-        steps{
-             script{
-                   try {
-                     sh 'python3 ./zip_job.py'
-                   }
-                   catch (Exception e) {
-                      currentBuild.result = 'FAILURE'
-                      stageResultMap.didBuildSucceeded = false
-                   }
-             }
-        }
+       try 
+       {
+            sh 'python3 ./zip_job.py'
+       }
+       catch (Exception e) 
+       {
+            currentBuild.result = 'FAILURE'
+            stageResultMap.didBuildSucceeded = false
+       }
     }
     stage('Publish'){
-        steps {
-             rtUpload (
-                    serverId: 'My_Artifactory' , 
-                    def uploadSpec =  
-                    '''{
-                           "files": 
-                           [
-                                  {
-                                       "pattern": "./*.zip",
-                                       "target": "repository/${VERSION}/"                                       
-                                  }
-                           ]
-                    }'''
-                    server.upload spec = uploadSpec
-             )
-         }
+       def uploadSpec = """{
+            "files": [
+               {
+                     "pattern": "./*.zip",
+                     "target": "repository/${VERSION}/"                                       
+               }
+            ]
+        }'''
+        server.upload spec : uploadSpec
     }
     stage('Report'){
-        steps {
              echo 'Send Mail'
              emailext body: 'This is job status', subject: "Jenkins Build ${currentBuild.currentResult}", to: 'dan998835@gmail.com'
-        }
     }
     stage('Cleanup'){
-        steps{
-             sh 'rm -rf $WORKSPACE/*'
-        } 
+             sh 'rm -rf $WORKSPACE/*' 
     }
 }
