@@ -1,6 +1,6 @@
   node {
     checkout scm
-    def buildImage = docker.build("image", "DockerFile")
+    def buildImage = docker.build("image", .)
     dockerfile {
        filename 'DockerFile'
        args '--privileged'
