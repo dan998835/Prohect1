@@ -9,14 +9,15 @@
     environment{
       VERSION = '1.2.0'
     }
-    def server = Artifactory.server 'My_Artifactory'
+    def rtServer = Artifactory.server 'My_Artifactory'
     def rtMaven = Artifactory.newMavenBuild()
+    def buildInfo = Artifactory.newBuildInfo()
     stage('Server Configuration'){
-       server.url = 'artifactory-url' 
-       server.username = 'super-user' 
-       server.password = 'Qw12856!' 
-       server.bypassProxy = true 
-       server.connection.timeout = 300
+       rtServer.url = 'artifactory-url' 
+       rtServer.username = 'super-user' 
+       rtServer.password = 'Qw12856!' 
+       rtServer.bypassProxy = true 
+       rtServer.connection.timeout = 300
        rtMaven.tool = 'maven'
     }
     stage('Build'){
@@ -46,7 +47,7 @@
                                   }
                            ]
                     }'''
-                    server.upload spec:uploadSpec
+                    server.upload spec = uploadSpec
              )
          }
     }
