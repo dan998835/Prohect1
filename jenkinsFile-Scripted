@@ -2,7 +2,6 @@
     checkout scm
     def dockerfile = 'DockerFile'
     def buildImage = docker.build("image", "-f --privileged ${dockerfile} .")
-       args '--privileged'
     environment{
       VERSION = '1.2.0'
     }
