@@ -1,6 +1,6 @@
   node {
   sh 'git clone https://github.com/dan998835/Project1.git'
-  sh 'mv DockerFile zipjob.py .'
+  sh 'mv Project1/DockerFile Project1/zipjob.py .'
   def dockerfile = "DockerFile"
   def github  = "https://github.com/dan998835/Project1.git"
       def buildImage = docker.build("my-image-${env.BUILD_ID}" ,"-f $dockerfile ./Project1"
