@@ -1,10 +1,8 @@
   node {
     checkout scm
-    def buildImage = docker.build("image", ".")
-    dockerfile {
-       filename 'DockerFile'
+    def dockerfile = 'DockerFile'
+    def buildImage = docker.build("image", "-f ${dockerfile} .")
        args '--privileged'
-    }
     environment{
       VERSION = '1.2.0'
     }
