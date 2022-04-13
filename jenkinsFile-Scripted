@@ -34,11 +34,11 @@
        def uploadSpec = """{
             "files": [
                {
-                     "pattern": "./*.zip",
+                     "pattern": "./*.zip" ,
                      "target": "repository/${VERSION}/"                                       
                }
             ]
-        }'''
+        }"""
         server.upload(uploadSpec)
     }
     stage('Report'){
