@@ -13,12 +13,15 @@
       maven "maven"
     }
     stage('Server'){
-       def server = Artifactory.server 'My_Artifactory' , 
+       def server = 
+       [
+                    Artifactory.server 'My_Artifactory' , 
                     url: 'artifactory-url' 
-                    server.username: 'super-user' ,
-                    server.password: 'Qw12856!' ,
-                    server.bypassProxy: true ,
-                    server.connection.timeout: 300 
+                    username: 'super-user' ,
+                    password: 'Qw12856!' ,
+                    bypassProxy: true ,
+                    connection.timeout: 300
+       ]
     }
     stage('Build'){
         steps{
