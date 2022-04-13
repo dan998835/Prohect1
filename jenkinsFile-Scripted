@@ -13,7 +13,7 @@
       maven "maven"
     }
     stage('Server'){
-       def server = Artifactory.server 'My_Artifactory' ,
+       def server = Artifactory.server 'My_Artifactory'
        server.url: 'artifactory-url' 
        server.username: 'super-user' 
        server.password: 'Qw12856!' 
