@@ -1,6 +1,6 @@
   node {
     docker.dockerfile(
-        additionalBuildArgs '--privileged'
+        additionalBuildArgs:'--privileged'
     ).inside() {
         def buildImage = docker.build("image", "-f ${dockerfile} --privileged .")
         environment{
