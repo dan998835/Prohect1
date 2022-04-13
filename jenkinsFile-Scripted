@@ -6,20 +6,19 @@
         label 'zip-job-docker'
       }
     }
+    environment{
+      VERSION = '1.2.0'
+    }
     tools{
       maven "maven"
     }
     stage('Server'){
-        steps{
-             rtServer (
-                  id: 'My_Artifactory' ,
-                   url: 'http://localhost:8082/artifactory' ,
-                   username: 'super-user' ,
-                   password: 'Qw12856!' ,
-                   bypassProxy: true ,
-                   timeout: 300 ,
-             )
-        }
+       def server = Artifactory.server 'My_Artifactory' , 
+                    url: 'artifactory-url' 
+                    server.username: 'super-user' ,
+                    server.password: 'Qw12856!' ,
+                    server.bypassProxy: true ,
+                    server.connection.timeout: 300 
     }
     stage('Build'){
         steps{
@@ -38,14 +37,17 @@
         steps {
              rtUpload (
                     serverId: 'My_Artifactory' , 
-                    spec: '''{
-                           "files": [
-                                     {
+                    def uploadSpec =  
+                    '''{
+                           "files": 
+                           [
+                                  {
                                        "pattern": "./*.zip",
-                                       "target": "repository/1.2.0/"                                       
-                                     }
+                                       "target": "repository/${VERSION}/"                                       
+                                  }
                            ]
                     }'''
+                    server.upload spec:uploadSpec
              )
          }
     }
