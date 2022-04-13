@@ -1,4 +1,5 @@
   node {
+      def dockerfile = 'DockerFile'
       def buildImage = docker.build("image", "-f ${dockerfile} --privileged .")
       environment{
         VERSION = '1.2.0'
@@ -6,10 +7,6 @@
       def rtServer = Artifactory.server 'My_Artifactory'
       def rtMaven = Artifactory.newMavenBuild()
       def buildInfo = Artifactory.newBuildInfo()
-    docker.dockerfile(
-        dir :'.' ,
-        additionalBuildArgs:'--privileged'
-    ).inside{
         stage('Server Configuration'){
            rtServer.url = 'artifactory-url' 
            rtServer.username = 'super-user' 
