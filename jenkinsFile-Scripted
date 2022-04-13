@@ -1,6 +1,5 @@
   node {
     docker.dockerfile(
-        label 'zip-job-docker'
         additionalBuildArgs '--privileged'
     ).inside() {
         def buildImage = docker.build("image", "-f ${dockerfile} --privileged .")
